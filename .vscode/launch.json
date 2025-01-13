@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Tallyer",
+            "request": "launch",
+            "mainClass": "Tallyer",
+            "projectName": "response-tally_bb4eb7c6"
+        },
+        {
             "type": "jdk",
             "request": "launch",
             "name": "Launch Java App"

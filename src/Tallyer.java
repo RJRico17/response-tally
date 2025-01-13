@@ -77,11 +77,18 @@ public class Tallyer {
      */
     public static Map<String, Integer> tallyTopicsFiltered(List<String> ids, List<String> topics) {
         Map<String, Integer> topicTally = new HashMap<>();
+        Map<String, Integer> counter = new HashMap<>();
         for (int i = 0; i < ids.size(); i++) {
-            if (topicTally.get(ids)>=3) {
+            if (counter.get(ids.get(i))<=2) {
+                if (topicTally.containsKey(ids.get(i))==false) {
+                    topicTally.put(topics.get(i),1);
+                }
+                else {
+                    topicTally.put(topics.get(i),topicTally.get(i)+1);
+                }
             }
             else {
-                topicTally.put(ids,topics.get(i));
+                continue;
             }
         }
         return topicTally;
