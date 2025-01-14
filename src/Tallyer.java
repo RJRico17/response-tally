@@ -17,6 +17,7 @@ public class Tallyer {
      *
      * @param args command-line arguments (not used in this implementation)
      */
+    @SuppressWarnings("ConvertToTryWithResources")
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
@@ -79,16 +80,16 @@ public class Tallyer {
         Map<String, Integer> topicTally = new HashMap<>();
         Map<String, Integer> counter = new HashMap<>();
         for (int i = 0; i < ids.size(); i++) {
+            counter.put(ids.get(i),counter.get(ids.get(i))+1);
             if (counter.get(ids.get(i))<=2) {
                 if (topicTally.containsKey(ids.get(i))==false) {
                     topicTally.put(topics.get(i),1);
                 }
                 else {
-                    topicTally.put(topics.get(i),topicTally.get(i)+1);
+                    topicTally.put(topics.get(i),topicTally.get(topics.get(i))+1);
                 }
             }
             else {
-                continue;
             }
         }
         return topicTally;
