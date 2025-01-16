@@ -53,13 +53,8 @@ public class Tallyer {
      */
     public static Map<String, Integer> tallyTopics(List<String> topics) {
         Map<String,Integer> count = new HashMap<>();
-        for (int i=0; i < topics.size(); i++) {
-            if (count.containsKey(topics.get(i))==false) {
-                count.put(topics.get(i),1);
-            }
-            else {
-                count.put(topics.get(i),count.get(topics.get(i))+1);
-            }
+        for (String topic : topics) {
+            count.put(topic, count.get(topic) + 1);
         }
         return count;
     }
@@ -79,17 +74,17 @@ public class Tallyer {
     public static Map<String, Integer> tallyTopicsFiltered(List<String> ids, List<String> topics) {
         Map<String, Integer> topicTally = new HashMap<>();
         Map<String, Integer> counter = new HashMap<>();
-        for (int i = 0; i < ids.size(); i++) {
-            counter.put(ids.get(i),counter.get(ids.get(i))+1);
-            if (counter.get(ids.get(i))<=2) {
-                if (topicTally.containsKey(ids.get(i))==false) {
-                    topicTally.put(topics.get(i),1);
-                }
-                else {
-                    topicTally.put(topics.get(i),topicTally.get(topics.get(i))+1);
-                }
+        for (String id : ids) {
+            counter.put(id, counter.get(id)+1);
+        }
+        for (int i=0;i < topics.size();i++) {
+            String ident = ids.get(i);
+            String topic = topics.get(i);
+            if (counter.get(ident) == 2) {
+                topicTally.put(topic,topicTally.get(topic)+1);
             }
             else {
+                topicTally.put(topic, 1);
             }
         }
         return topicTally;
